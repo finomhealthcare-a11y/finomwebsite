@@ -1,0 +1,1439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finom Healthcare Pvt Ltd | Advancing Healthcare Through Trust</title>
+    <meta name="description" content="Finom Healthcare is dedicated to strengthening healthcare accessibility through pharmaceutical solutions, responsible business practices and trusted partnerships.">
+    <meta property="og:title" content="Finom Healthcare Pvt Ltd">
+    <meta property="og:description" content="Advancing Healthcare Through Trust, Quality & Commitment.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/jpeg" href="assets/logo.jpg">
+    <style>
+        /* =========================================
+           DESIGN SYSTEM & VARIABLES
+           ========================================= */
+        :root {
+            --primary-blue: #079BCB;
+            --primary-blue-hover: #0682AA;
+            --secondary-green: #55A934;
+            --accent-red: #D91F32;
+            --white: #FFFFFF;
+            --bg-light: #F5FAFC;
+            --navy: #172B3A;
+            --text-main: #334155;
+            --text-muted: #64748B;
+            --border-color: #E2E8F0;
+            --font-heading: 'Manrope', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --container-width: 1200px;
+            --header-height: 80px;
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -1px rgba(0,0,0,0.03);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -2px rgba(0,0,0,0.025);
+        }
+
+        /* =========================================
+           RESET & BASE STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: var(--header-height);
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--text-main);
+            background-color: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-heading);
+            color: var(--navy);
+            line-height: 1.2;
+            font-weight: 700;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary-blue);
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .section-title {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            color: var(--text-muted);
+            font-size: clamp(1rem, 2vw, 1.125rem);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .text-center { text-align: center; }
+
+        /* =========================================
+           LAYOUT & COMPONENTS
+           ========================================= */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: clamp(4rem, 8vw, 6rem) 0;
+        }
+
+        .bg-light {
+            background-color: var(--bg-light);
+        }
+
+        .grid-2, .grid-3, .grid-4 {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .grid-2 { grid-template-columns: 1fr; }
+        .grid-3 { grid-template-columns: 1fr; }
+        .grid-4 { grid-template-columns: 1fr; }
+
+        @media (min-width: 600px) {
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 992px) {
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-blue-hover);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--primary-blue);
+            color: var(--primary-blue);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-block {
+            width: 100%;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        .site-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: var(--header-height);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        .company-logo {
+            width: 65px;
+            height: 65px;
+            object-fit: contain;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--navy);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 1.25rem;
+            letter-spacing: -0.5px;
+        }
+
+        .light-text {
+            font-weight: 500;
+            color: var(--text-muted);
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .main-nav {
+            display: none;
+        }
+
+        .mobile-toggle {
+            display: block;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .hamburger {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--navy);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .hamburger::before,
+        .hamburger::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--navy);
+            left: 0;
+            transition: var(--transition);
+        }
+
+        .hamburger::before { top: -6px; }
+        .hamburger::after { bottom: -6px; }
+
+        .nav-toggle:checked ~ .mobile-toggle .hamburger { background-color: transparent; }
+        .nav-toggle:checked ~ .mobile-toggle .hamburger::before { transform: rotate(45deg); top: 0; }
+        .nav-toggle:checked ~ .mobile-toggle .hamburger::after { transform: rotate(-45deg); bottom: 0; }
+
+        .nav-toggle:checked ~ .main-nav {
+            display: flex;
+            position: absolute;
+            top: var(--header-height);
+            left: 0;
+            width: 100%;
+            background: var(--white);
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            box-shadow: var(--shadow-md);
+            flex-direction: column;
+        }
+
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .nav-link {
+            color: var(--text-main);
+            font-weight: 500;
+            font-size: 0.95rem;
+            display: block;
+            width: 100%;
+            padding: 0.5rem 0;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-cta {
+            color: var(--white) !important;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 992px) {
+            .mobile-toggle {
+                display: none;
+            }
+            .main-nav {
+                display: block;
+                position: static;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                background: transparent;
+            }
+            .nav-list {
+                flex-direction: row;
+                align-items: center;
+                gap: 2rem;
+            }
+            .nav-link {
+                display: inline-block;
+                width: auto;
+                padding: 0;
+            }
+            .nav-cta {
+                margin-top: 0;
+            }
+        }
+
+        /* =========================================
+           HERO SECTION
+           ========================================= */
+        .hero {
+            padding-top: calc(var(--header-height) + 2rem);
+            padding-bottom: 4rem;
+            background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+            overflow: hidden;
+        }
+
+        .hero-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            color: var(--primary-blue);
+            font-weight: 600;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-subtitle {
+            font-size: 1.125rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 540px;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .hero-img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 2;
+            width: 100%;
+            max-width: 500px;
+            object-fit: cover;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(40px);
+            z-index: 1;
+            opacity: 0.5;
+        }
+
+        .shape-1 {
+            width: 200px;
+            height: 200px;
+            background: var(--primary-blue);
+            top: -20px;
+            right: -20px;
+        }
+
+        .shape-2 {
+            width: 250px;
+            height: 250px;
+            background: var(--secondary-green);
+            bottom: -30px;
+            left: -30px;
+        }
+
+        @media (min-width: 992px) {
+            .hero-container {
+                flex-direction: row;
+                align-items: center;
+            }
+            .hero-content {
+                flex: 1;
+            }
+            .hero-visual {
+                flex: 1;
+            }
+        }
+
+        /* =========================================
+           ABOUT SECTION
+           ========================================= */
+        .about-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .about-img {
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-muted);
+        }
+
+        .company-details {
+            display: grid;
+            gap: 1rem;
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .detail-item {
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-container {
+                flex-direction: row;
+                align-items: center;
+            }
+            .about-image-wrapper, .about-content {
+                flex: 1;
+            }
+        }
+
+        /* =========================================
+           CORE VALUES
+           ========================================= */
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            background: rgba(7, 155, 203, 0.1);
+            color: var(--primary-blue);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-box svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .value-card h3 {
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .value-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* =========================================
+           PRODUCTS SECTION (CSS-Only Filter & Search)
+           ========================================= */
+        .product-controls {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .search-box svg {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 20px;
+            height: 20px;
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 0.75rem 1rem 0.75rem 3rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search-box input:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(7, 155, 203, 0.1);
+        }
+
+        .filter-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            justify-content: center;
+        }
+
+        /* Hide radio buttons */
+        .filter-input {
+            display: none;
+        }
+
+        .filter-btn {
+            display: inline-block;
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            color: var(--text-main);
+        }
+
+        .filter-btn:hover {
+            background: var(--bg-light);
+        }
+
+        .filter-input:checked + .filter-btn {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .product-grid {
+            grid-template-columns: 1fr;
+        }
+
+        @media (min-width: 600px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 992px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+            .product-controls {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+
+        .product-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            border-color: var(--primary-blue);
+            box-shadow: var(--shadow-md);
+            transform: translateY(-3px);
+        }
+
+        .product-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .product-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--navy);
+            margin: 0;
+            word-break: break-word;
+        }
+
+        .product-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            background: rgba(7, 155, 203, 0.1);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            white-space: nowrap;
+            margin-left: 1rem;
+        }
+
+        .product-composition {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            flex-grow: 1;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-action {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .product-action::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-action::after {
+            transform: translateX(5px);
+        }
+
+        /* CSS-Only Filtering Logic */
+        #filter-all:checked ~ .product-grid .product-card { display: flex; }
+        #filter-tablets:checked ~ .product-grid .product-card[data-category="tablets"] { display: flex; }
+        #filter-tablets:checked ~ .product-grid .product-card:not([data-category="tablets"]) { display: none; }
+        #filter-capsules:checked ~ .product-grid .product-card[data-category="capsules"] { display: flex; }
+        #filter-capsules:checked ~ .product-grid .product-card:not([data-category="capsules"]) { display: none; }
+        #filter-syrup:checked ~ .product-grid .product-card[data-category="syrup"] { display: flex; }
+        #filter-syrup:checked ~ .product-grid .product-card:not([data-category="syrup"]) { display: none; }
+
+        /* CSS-Only Search Logic (using modern :has() selector) */
+        /* Note: :has() is supported in all modern browsers (Chrome 105+, Safari 15.4+, Firefox 121+) */
+        .product-wrapper:has(#productSearch:not(:placeholder-shown)) .product-card {
+            display: none;
+        }
+        .product-wrapper:has(#productSearch[value*="FITALO" i]:not(:placeholder-shown)) .product-card[data-name*="FITALO" i],
+        .product-wrapper:has(#productSearch[value*="RESPINOM" i]:not(:placeholder-shown)) .product-card[data-name*="RESPINOM" i],
+        .product-wrapper:has(#productSearch[value*="OLANZON" i]:not(:placeholder-shown)) .product-card[data-name*="OLANZON" i],
+        .product-wrapper:has(#productSearch[value*="GABANICE" i]:not(:placeholder-shown)) .product-card[data-name*="GABANICE" i],
+        .product-wrapper:has(#productSearch[value*="OPIFIN" i]:not(:placeholder-shown)) .product-card[data-name*="OPIFIN" i],
+        .product-wrapper:has(#productSearch[value*="HYKNERV" i]:not(:placeholder-shown)) .product-card[data-name*="HYKNERV" i],
+        .product-wrapper:has(#productSearch[value*="GINKOFIN" i]:not(:placeholder-shown)) .product-card[data-name*="GINKOFIN" i],
+        .product-wrapper:has(#productSearch[value*="ESTRAONE" i]:not(:placeholder-shown)) .product-card[data-name*="ESTRAONE" i],
+        .product-wrapper:has(#productSearch[value*="VITAMEE" i]:not(:placeholder-shown)) .product-card[data-name*="VITAMEE" i],
+        .product-wrapper:has(#productSearch[value*="PANOM" i]:not(:placeholder-shown)) .product-card[data-name*="PANOM" i],
+        .product-wrapper:has(#productSearch[value*="ACEGET" i]:not(:placeholder-shown)) .product-card[data-name*="ACEGET" i],
+        .product-wrapper:has(#productSearch[value*="MONTIZIN" i]:not(:placeholder-shown)) .product-card[data-name*="MONTIZIN" i] {
+            display: flex;
+        }
+
+        /* =========================================
+           EXPERTISE & WHY CHOOSE US
+           ========================================= */
+        .expertise-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .expertise-icon {
+            width: 64px;
+            height: 64px;
+            margin: 0 auto 1.5rem auto;
+            background: rgba(85, 169, 52, 0.1);
+            color: var(--secondary-green);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .expertise-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .feature-list {
+            margin-top: 2rem;
+        }
+
+        .feature-list li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 1.25rem;
+            color: var(--text-muted);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-green);
+            font-weight: bold;
+        }
+
+        .why-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .abstract-box {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 300px;
+            background: linear-gradient(135deg, var(--bg-light), var(--white));
+            border: 2px dashed var(--border-color);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .circle-decoration {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-blue), var(--secondary-green));
+            opacity: 0.2;
+            animation: pulse 4s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.2); }
+        }
+
+        .mv-card {
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        .mv-card h3 {
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .mv-card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+        }
+
+        /* =========================================
+           CONTACT SECTION
+           ========================================= */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 3rem;
+        }
+
+        .address-block {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 2rem;
+            border-left: 4px solid var(--secondary-green);
+        }
+
+        .address-block h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .enquiry-form {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            background: var(--white);
+            color: var(--text-main);
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(7, 155, 203, 0.1);
+        }
+
+        @media (min-width: 992px) {
+            .contact-container {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+            .contact-info, .contact-form-wrapper {
+                flex: 1;
+            }
+            .contact-info {
+                padding-right: 2rem;
+            }
+        }
+
+        /* =========================================
+           FOOTER
+           ========================================= */
+        .site-footer {
+            background-color: var(--navy);
+            color: #cbd5e1;
+            padding-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2.5rem;
+            padding-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr;
+            }
+        }
+
+        .footer-logo {
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-desc {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            max-width: 350px;
+        }
+
+        .site-footer h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+            font-family: var(--font-heading);
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links ul li a {
+            color: #cbd5e1;
+            font-size: 0.95rem;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding: 1.5rem 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+        }
+
+        .footer-legal a {
+            color: #cbd5e1;
+            margin-left: 1rem;
+        }
+
+        .footer-legal a:hover {
+            color: var(--white);
+        }
+
+        .footer-disclaimer {
+            padding-bottom: 2rem;
+            font-size: 0.75rem;
+            color: #94A3B8;
+            text-align: center;
+            max-width: 800px;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+            }
+        }
+
+        /* =========================================
+           UTILITIES
+           ========================================= */
+        .disclaimer {
+            margin-top: 2rem;
+            font-size: 0.85rem;
+            color: #64748B;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header id="header" class="site-header">
+        <div class="container header-container">
+            <a href="#home" class="brand-logo" aria-label="Finom Healthcare Home">
+                <img src="assets/logo.jpg" alt="Finom Healthcare Logo" class="company-logo" width="65" height="65">
+                <span class="brand-text">FINOM<span class="light-text">Healthcare</span></span>
+            </a>
+
+            <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true">
+            <label for="nav-toggle" class="mobile-toggle" aria-label="Toggle Menu">
+                <span class="hamburger"></span>
+            </label>
+
+            <nav class="main-nav" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#home" class="nav-link">Home</a></li>
+                    <li><a href="#about" class="nav-link">About Us</a></li>
+                    <li><a href="#products" class="nav-link">Our Products</a></li>
+                    <li><a href="#expertise" class="nav-link">Our Expertise</a></li>
+                    <li><a href="#mission" class="nav-link">Mission & Vision</a></li>
+                    <li><a href="#contact" class="nav-link btn-primary nav-cta">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section id="home" class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="eyebrow">Finom Healthcare Private Limited</span>
+                    <h1 class="hero-title">Advancing Healthcare Through Trust, Quality & Commitment.</h1>
+                    <p class="hero-subtitle">Finom Healthcare is dedicated to strengthening healthcare accessibility through pharmaceutical solutions, responsible business practices and trusted partnerships with healthcare professionals.</p>
+                    <div class="hero-actions">
+                        <a href="#products" class="btn btn-primary">Explore Our Products</a>
+                        <a href="#contact" class="btn btn-outline">Partner With Us</a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="shape shape-1"></div>
+                    <div class="shape shape-2"></div>
+                    <img src="assets/hero-image.webp" alt="Pharmaceutical healthcare products in a modern clinical setting" class="hero-img" loading="eager" width="600" height="500">
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section about">
+            <div class="container about-container">
+                <div class="about-image-wrapper">
+                    <img src="assets/about-image.webp" alt="Pharmaceutical wellness products arranged on a clean clinical surface" class="about-img" loading="lazy" width="500" height="600">
+                </div>
+                <div class="about-content">
+                    <h2 class="section-title">About Finom Healthcare</h2>
+                    <p>Finom Healthcare Private Limited is an Indian pharmaceutical and healthcare company engaged in the wholesale trading of pharmaceutical and medical products. Established in 2023, the company aims to build meaningful relationships across the healthcare ecosystem through professional service, responsible business practices and a commitment to supporting healthcare needs.</p>
+                    <div class="company-details">
+                        <div class="detail-item"><strong>Incorporated:</strong> 17 October 2023</div>
+                        <div class="detail-item"><strong>CIN:</strong> U46497MH2023PTC412394</div>
+                        <div class="detail-item"><strong>Status:</strong> Active</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CORE VALUES -->
+        <section class="section core-values bg-light">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Our Core Values</h2>
+                    <p class="section-subtitle">The principles that guide our operations and partnerships.</p>
+                </div>
+                <div class="grid-4 values-grid">
+                    <div class="card value-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                        </div>
+                        <h3>Quality Commitment</h3>
+                        <p>A commitment to responsible sourcing and maintaining high standards in pharmaceutical business practices.</p>
+                    </div>
+                    <div class="card value-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3>Trust & Integrity</h3>
+                        <p>Building lasting relationships through transparency, accountability and ethical conduct.</p>
+                    </div>
+                    <div class="card value-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
+                        </div>
+                        <h3>Healthcare Partnerships</h3>
+                        <p>Supporting meaningful collaboration with doctors, chemists, distributors and healthcare professionals.</p>
+                    </div>
+                    <div class="card value-card">
+                        <div class="icon-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
+                        </div>
+                        <h3>Continuous Growth</h3>
+                        <p>Embracing improvement, innovation and evolving healthcare requirements.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCTS SECTION -->
+        <section id="products" class="section products">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Our Pharmaceutical Portfolio</h2>
+                    <p class="section-subtitle">Explore our growing range of pharmaceutical formulations and healthcare products.</p>
+                </div>
+
+                <div class="product-catalogue-reference">
+                    <img
+                        src="assets/product-catalogue.jpg"
+                        alt="Finom Healthcare Products"
+                        loading="lazy"
+                        style="width:100%;max-width:1000px;height:auto;margin:0 auto 2rem;border-radius:12px;"
+                    >
+                </div>
+
+                <div class="product-wrapper">
+                    <div class="product-controls">
+                        <div class="search-box">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                            <input type="text" id="productSearch" placeholder="Search products by name..." aria-label="Search products" autocomplete="off">
+                        </div>
+                        <div class="filter-buttons">
+                            <input type="radio" name="productFilter" id="filter-all" class="filter-input" checked>
+                            <label for="filter-all" class="filter-btn">All</label>
+
+                            <input type="radio" name="productFilter" id="filter-tablets" class="filter-input">
+                            <label for="filter-tablets" class="filter-btn">Tablets</label>
+
+                            <input type="radio" name="productFilter" id="filter-capsules" class="filter-input">
+                            <label for="filter-capsules" class="filter-btn">Capsules</label>
+
+                            <input type="radio" name="productFilter" id="filter-syrup" class="filter-input">
+                            <label for="filter-syrup" class="filter-btn">Syrup</label>
+                        </div>
+                    </div>
+
+                    <div class="grid-3 product-grid" id="productGrid">
+
+                        <div class="product-card" data-category="tablets" data-name="FITALO LS">
+                            <div class="product-card-header">
+                                <h3 class="product-title">FITALO LS</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Escitalopram 5 mg + Clonazepam 0.25 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="FITALO PLUS">
+                            <div class="product-card-header">
+                                <h3 class="product-title">FITALO PLUS</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Escitalopram 5/10 mg + Clonazepam 0.5 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="RESPINOM PLUS 2/3">
+                            <div class="product-card-header">
+                                <h3 class="product-title">RESPINOM PLUS 2/3</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Risperidone 2/3 mg + Trihexyphenidyl 2 mg mouth-dissolving tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="OLANZON MD">
+                            <div class="product-card-header">
+                                <h3 class="product-title">OLANZON MD</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Olanzapine 2.5/5/10 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="GABANICE-NT">
+                            <div class="product-card-header">
+                                <h3 class="product-title">GABANICE-NT</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Gabapentin 400 mg + Nortriptyline 10 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="OPIFIN 50/100">
+                            <div class="product-card-header">
+                                <h3 class="product-title">OPIFIN 50/100</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Opipramol 50/100 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="HYKNERV">
+                            <div class="product-card-header">
+                                <h3 class="product-title">HYKNERV</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Benfotiamine 200 mg + Methylcobalamin 1500 mcg + Alpha Lipoic Acid 200 mg + Folic Acid 1.5 mg + Chromium Picolinate 200 mcg + Myo-Inositol 100 mg + Pyridoxine Hydrochloride 3 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="capsules" data-name="GINKOFIN">
+                            <div class="product-card-header">
+                                <h3 class="product-title">GINKOFIN</h3>
+                                <span class="product-category">Capsules</span>
+                            </div>
+                            <p class="product-composition">Omega-3 fatty acid 110 mg + Green Tea Extract 200 mg + Ginseng 100 mg + Garlic Extract 50 mg + Ginkgo Biloba 50 mg + Lycopene 10 mg with vitamins and minerals.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="ESTRAONE-2">
+                            <div class="product-card-header">
+                                <h3 class="product-title">ESTRAONE-2</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Estradiol Valerate 2 mg.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="syrup" data-name="VITAMEE SYRUP">
+                            <div class="product-card-header">
+                                <h3 class="product-title">VITAMEE SYRUP</h3>
+                                <span class="product-category">Syrup</span>
+                            </div>
+                            <p class="product-composition">Lycopene 10% - 1000 mcg + Vitamin E 10 mg + Vitamin B2 2 mg + Vitamin B1 1.7 mg + Vitamin B6 1.2 mg + Biotin 50 mcg + Zinc Gluconate 3 mg + Copper Sulphate 500 mcg + Manganese Gluconate 100 mcg + Potassium Iodide 100 mcg.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="capsules" data-name="PANOM D">
+                            <div class="product-card-header">
+                                <h3 class="product-title">PANOM D</h3>
+                                <span class="product-category">Capsules</span>
+                            </div>
+                            <p class="product-composition">Pantoprazole 40 mg (EC) + Domperidone 30 mg (SR) capsules.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="ACEGET-SP">
+                            <div class="product-card-header">
+                                <h3 class="product-title">ACEGET-SP</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Aceclofenac 100 mg + Paracetamol 325 mg + Serratiopeptidase 15 mg.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                        <div class="product-card" data-category="tablets" data-name="MONTIZIN">
+                            <div class="product-card-header">
+                                <h3 class="product-title">MONTIZIN</h3>
+                                <span class="product-category">Tablets</span>
+                            </div>
+                            <p class="product-composition">Montelukast Sodium 10 mg + Levocetirizine 5 mg tablets.</p>
+                            <a href="#contact" class="product-action">Enquire About Product</a>
+                        </div>
+
+                    </div>
+                </div>
+
+                <p class="disclaimer text-center">
+                    <em>Product information is provided for general reference and is intended for healthcare professionals and authorized business stakeholders. Medicines should be used only under appropriate medical guidance.</em>
+                </p>
+            </div>
+        </section>
+
+        <!-- EXPERTISE SECTION -->
+        <section id="expertise" class="section expertise bg-light">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Supporting the Healthcare Ecosystem</h2>
+                </div>
+                <div class="grid-3">
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+                        </div>
+                        <h3>Pharmaceutical Trading</h3>
+                        <p>Responsible wholesale trading of pharmaceutical products.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                        </div>
+                        <h3>Healthcare Product Portfolio</h3>
+                        <p>A diverse selection of pharmaceutical formulations and wellness products.</p>
+                    </div>
+                    <div class="expertise-card">
+                        <div class="expertise-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        </div>
+                        <h3>Business Partnerships</h3>
+                        <p>Building professional relationships with doctors, chemists, distributors and healthcare stakeholders.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section class="section why-choose">
+            <div class="container">
+                <div class="section-header text-center">
+                    <h2 class="section-title">Building Trust. Supporting Healthcare. Growing Together.</h2>
+                </div>
+                <div class="grid-2">
+                    <div class="why-text">
+                        <ul class="feature-list">
+                            <li><strong>Professional Business Approach:</strong> We conduct our operations with the highest standards of professionalism.</li>
+                            <li><strong>Diverse Product Portfolio:</strong> A growing range of pharmaceutical formulations to meet varied healthcare needs.</li>
+                            <li><strong>Relationship-Driven Partnerships:</strong> We value long-term relationships built on mutual trust and respect.</li>
+                            <li><strong>Commitment to Responsible Practices:</strong> Ensuring ethical and transparent business conduct.</li>
+                            <li><strong>Focus on Continuous Improvement:</strong> Constantly evolving to meet the dynamic needs of the healthcare sector.</li>
+                        </ul>
+                    </div>
+                    <div class="why-visual">
+                        <div class="abstract-box">
+                            <div class="circle-decoration"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MISSION & VISION -->
+        <section id="mission" class="section mission-vision bg-light">
+            <div class="container grid-2">
+                <div class="card mv-card">
+                    <h3>Our Mission</h3>
+                    <p>To contribute to a stronger healthcare ecosystem through responsible pharmaceutical trading, trusted partnerships and a commitment to quality and professional excellence.</p>
+                </div>
+                <div class="card mv-card">
+                    <h3>Our Vision</h3>
+                    <p>To grow as a trusted pharmaceutical and healthcare business, recognized for integrity, meaningful partnerships and a consistent commitment to supporting healthcare needs.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section contact">
+            <div class="container contact-container">
+                <div class="contact-info">
+                    <h2 class="section-title">Let's Build a Healthier Future Together.</h2>
+                    <p>Connect with Finom Healthcare for product enquiries, distribution opportunities and business partnerships.</p>
+
+                    <div class="address-block">
+                        <h3>Registered Office</h3>
+                        <p>Office No. 106, Mangeshi Elite II,<br> Rambaug No. 04, Chikanghar,<br> Kalyan, Thane, Maharashtra – 421301, India.</p>
+                    </div>
+                    <div class="address-block" style="margin-top: 1.5rem;">
+                        <p><strong>Email:</strong> <span style="color:#64748B;">[To be updated]</span></p>
+                        <p><strong>Phone:</strong> <span style="color:#64748B;">[To be updated]</span></p>
+                    </div>
+                </div>
+
+                <div class="contact-form-wrapper">
+                    <form id="enquiryForm" class="enquiry-form" action="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required placeholder="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Company / Organization</label>
+                            <input type="text" id="company" name="company" placeholder="Your Company">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required placeholder="john@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Mobile Number</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+91 9876543210">
+                        </div>
+                        <div class="form-group">
+                            <label for="enquiryType">Enquiry Type *</label>
+                            <select id="enquiryType" name="enquiryType" required>
+                                <option value="">Select an option</option>
+                                <option value="product">Product Enquiry</option>
+                                <option value="distribution">Distribution Partnership</option>
+                                <option value="collaboration">Business Collaboration</option>
+                                <option value="general">General Enquiry</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="4" required placeholder="How can we assist you?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Submit Enquiry</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="#home" class="brand-logo footer-logo">
+                    <img src="assets/logo.jpg" alt="Finom Healthcare Logo" class="company-logo" width="65" height="65">
+                    <span class="brand-text text-white">FINOM<span class="light-text" style="color:#cbd5e1;">Healthcare</span></span>
+                </a>
+                <p class="footer-desc">Dedicated to strengthening healthcare accessibility through pharmaceutical solutions, responsible business practices and trusted partnerships.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#products">Our Products</a></li>
+                    <li><a href="#expertise">Our Expertise</a></li>
+                    <li><a href="#mission">Mission & Vision</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Contact</h4>
+                <p>Office No. 106, Mangeshi Elite II,<br> Rambaug No. 04, Chikanghar,<br> Kalyan, Thane, Maharashtra – 421301, India.</p>
+                <p style="margin-top: 1rem;"><strong>Email:</strong> [To be updated]</p>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2023 Finom Healthcare Private Limited. All rights reserved.</p>
+            <div class="footer-legal">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms & Conditions</a>
+            </div>
+        </div>
+        <div class="container footer-disclaimer">
+            <p>Product information is provided for general reference and is intended for healthcare professionals and authorized business stakeholders. Product compositions and regulatory information should be verified against approved product documentation. Medicines should be used only under appropriate medical guidance.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
