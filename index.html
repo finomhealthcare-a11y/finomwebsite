@@ -302,6 +302,10 @@
             width: 100%;
         }
 
+        .nav-list > li {
+            width: 100%;
+        }
+
         .nav-link {
             color: var(--text-main);
             font-weight: 500;
@@ -315,10 +319,30 @@
             color: var(--primary-blue);
         }
 
-        .nav-cta {
-            color: var(--white) !important;
-            text-align: center;
-            margin-top: 1rem;
+        .nav-link.nav-cta {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 48px;
+            padding: 0.9rem 1.85rem;
+            margin-top: 0.5rem;
+            color: var(--white);
+            background-color: var(--primary-blue);
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: 0.01em;
+            border-radius: 8px;
+            white-space: nowrap;
+            box-shadow: 0 2px 8px rgba(7, 155, 203, 0.18);
+        }
+
+        .nav-link.nav-cta:hover {
+            background-color: var(--primary-blue-hover);
+            color: var(--white);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px rgba(7, 155, 203, 0.28);
         }
 
         @media (min-width: 992px) {
@@ -335,16 +359,31 @@
             }
             .nav-list {
                 flex-direction: row;
+                flex-wrap: nowrap;
                 align-items: center;
-                gap: 2rem;
+                gap: 1.25rem;
+            }
+            .nav-list > li {
+                width: auto;
+                flex-shrink: 0;
             }
             .nav-link {
                 display: inline-block;
                 width: auto;
                 padding: 0;
+                white-space: nowrap;
             }
-            .nav-cta {
+            .nav-link.nav-cta {
+                display: inline-flex;
+                width: auto;
                 margin-top: 0;
+                padding: 0.85rem 1.75rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .nav-list {
+                gap: 2rem;
             }
         }
 
@@ -352,16 +391,42 @@
            HERO SECTION
            ========================================= */
         .hero {
-            padding-top: calc(var(--header-height) + 2rem);
+            position: relative;
+            display: flex;
+            align-items: center;
+            min-height: 100vh;
+            padding-top: calc(var(--header-height) + 2.5rem);
             padding-bottom: 4rem;
-            background: linear-gradient(135deg, var(--bg-light) 0%, var(--white) 100%);
+            background-color: var(--bg-light);
+            background-image: url("assets/hero-image.webp");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             overflow: hidden;
         }
 
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                105deg,
+                rgba(255, 255, 255, 0.9) 0%,
+                rgba(245, 250, 252, 0.78) 36%,
+                rgba(255, 255, 255, 0.46) 62%,
+                rgba(255, 255, 255, 0.28) 100%
+            );
+            pointer-events: none;
+        }
+
         .hero-container {
-            display: flex;
-            flex-direction: column;
-            gap: 3rem;
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+
+        .hero-content {
+            max-width: 640px;
         }
 
         .eyebrow {
@@ -393,55 +458,45 @@
             gap: 1rem;
         }
 
-        .hero-visual {
-            position: relative;
-            display: flex;
-            justify-content: center;
+        .hero .btn-outline {
+            background-color: rgba(255, 255, 255, 0.94);
         }
 
-        .hero-img {
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow-lg);
-            z-index: 2;
-            width: 100%;
-            max-width: 500px;
-            object-fit: cover;
-        }
-
-        .shape {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(40px);
-            z-index: 1;
-            opacity: 0.5;
-        }
-
-        .shape-1 {
-            width: 200px;
-            height: 200px;
-            background: var(--primary-blue);
-            top: -20px;
-            right: -20px;
-        }
-
-        .shape-2 {
-            width: 250px;
-            height: 250px;
-            background: var(--secondary-green);
-            bottom: -30px;
-            left: -30px;
-        }
-
-        @media (min-width: 992px) {
-            .hero-container {
-                flex-direction: row;
-                align-items: center;
+        @media (max-width: 767px) {
+            .hero {
+                min-height: 0;
+                align-items: flex-start;
+                padding-top: calc(var(--header-height) + 2rem);
+                padding-bottom: 3rem;
+                background-position: 72% center;
             }
+
+            .hero::before {
+                background: linear-gradient(
+                    180deg,
+                    rgba(255, 255, 255, 0.9) 0%,
+                    rgba(255, 255, 255, 0.8) 58%,
+                    rgba(255, 255, 255, 0.62) 100%
+                );
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 991px) {
+            .hero {
+                min-height: 78vh;
+                background-position: 65% center;
+            }
+
             .hero-content {
-                flex: 1;
-            }
-            .hero-visual {
-                flex: 1;
+                max-width: 560px;
             }
         }
 
@@ -1036,11 +1091,6 @@
                         <a href="#products" class="btn btn-primary">Explore Our Products</a>
                         <a href="#contact" class="btn btn-outline">Partner With Us</a>
                     </div>
-                </div>
-                <div class="hero-visual">
-                    <div class="shape shape-1"></div>
-                    <div class="shape shape-2"></div>
-                    <img src="assets/hero-image.webp" alt="Pharmaceutical healthcare products in a modern clinical setting" class="hero-img" loading="eager" width="600" height="500">
                 </div>
             </div>
         </section>
