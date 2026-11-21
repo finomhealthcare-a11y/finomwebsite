@@ -14,3 +14,7 @@ desktop.ini
 
 # Cursor / IDE
 .cursor/
+
+# Supabase CLI (local only)
+supabase/.branches
+supabase/.temp

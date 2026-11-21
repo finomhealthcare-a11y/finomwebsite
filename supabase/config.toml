@@ -1,0 +1,5 @@
+# Finom Healthcare — Supabase project Finom1 (rtcdmctwoiajkzyrdcit)
+project_id = "rtcdmctwoiajkzyrdcit"
+
+[functions.notify-new-enquiry]
+verify_jwt = false
