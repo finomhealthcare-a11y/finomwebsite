@@ -17,8 +17,8 @@
            DESIGN SYSTEM & VARIABLES
            ========================================= */
         :root {
-            --primary-blue: #079BCB;
-            --primary-blue-hover: #0682AA;
+            --primary-blue: #123B70;
+            --primary-blue-hover: #0E2F59;
             --secondary-green: #55A934;
             --accent-red: #D91F32;
             --white: #FFFFFF;
@@ -411,10 +411,10 @@
             inset: 0;
             background: linear-gradient(
                 105deg,
-                rgba(255, 255, 255, 0.9) 0%,
-                rgba(245, 250, 252, 0.78) 36%,
-                rgba(255, 255, 255, 0.46) 62%,
-                rgba(255, 255, 255, 0.28) 100%
+                rgba(239, 247, 255, 0.96) 0%,
+                rgba(220, 235, 251, 0.84) 36%,
+                rgba(18, 59, 112, 0.22) 70%,
+                rgba(18, 59, 112, 0.38) 100%
             );
             pointer-events: none;
         }
@@ -474,9 +474,9 @@
             .hero::before {
                 background: linear-gradient(
                     180deg,
-                    rgba(255, 255, 255, 0.9) 0%,
-                    rgba(255, 255, 255, 0.8) 58%,
-                    rgba(255, 255, 255, 0.62) 100%
+                    rgba(239, 247, 255, 0.94) 0%,
+                    rgba(220, 235, 251, 0.86) 58%,
+                    rgba(18, 59, 112, 0.20) 100%
                 );
             }
 
@@ -551,7 +551,7 @@
         .icon-box {
             width: 48px;
             height: 48px;
-            background: rgba(7, 155, 203, 0.1);
+            background: rgba(18, 59, 112, 0.10);
             color: var(--primary-blue);
             border-radius: 10px;
             display: flex;
@@ -574,6 +574,21 @@
             color: var(--text-muted);
             font-size: 0.95rem;
         }
+
+
+        /* Product imagery cards: packaging and product details stay together */
+        .product-grid { grid-template-columns: 1fr; }
+        @media (min-width: 700px) { .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        .product-card-photo { display: flex; flex-direction: row; align-items: stretch; gap: 1rem; padding: 1rem; min-width: 0; }
+        .product-photo-wrap { flex: 0 0 40%; min-width: 0; display: flex; align-items: center; justify-content: center; background: #F7F9FC; border-radius: 10px; overflow: hidden; }
+        .product-photo { width: 100%; height: 100%; max-height: 230px; object-fit: contain; padding: .35rem; }
+        .product-card-content { display: flex; flex-direction: column; flex: 1; min-width: 0; }
+        .product-card-content .product-card-header { flex-direction: column; gap: .5rem; align-items: flex-start; }
+        .product-card-content .product-category { margin-left: 0; }
+        .product-card-content .product-composition { margin-bottom: 1rem; }
+        .product-photo-placeholder { min-height: 180px; color: var(--text-muted); font-size: .85rem; text-align: center; padding: 1rem; border: 1px dashed var(--border-color); }
+        @media (max-width: 599px) { .product-card-photo { gap: .75rem; padding: .8rem; } .product-photo-wrap { flex-basis: 38%; } .product-photo { max-height: 180px; } .product-title { font-size: 1.05rem; } .product-card-content .product-composition { font-size: .82rem; } }
+        .product-card-photo:hover { border-color: var(--primary-blue); }
 
         /* =========================================
            PRODUCTS SECTION (CSS-Only Filter & Search)
@@ -616,7 +631,7 @@
 
         .search-box input:focus {
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(7, 155, 203, 0.1);
+            box-shadow: 0 0 0 3px rgba(18, 59, 112, 0.10);
         }
 
         .filter-buttons {
@@ -705,7 +720,7 @@
             font-size: 0.75rem;
             font-weight: 600;
             color: var(--primary-blue);
-            background: rgba(7, 155, 203, 0.1);
+            background: rgba(18, 59, 112, 0.10);
             padding: 0.25rem 0.75rem;
             border-radius: 12px;
             white-space: nowrap;
@@ -745,26 +760,6 @@
         #filter-capsules:checked ~ .product-grid .product-card:not([data-category="capsules"]) { display: none; }
         #filter-syrup:checked ~ .product-grid .product-card[data-category="syrup"] { display: flex; }
         #filter-syrup:checked ~ .product-grid .product-card:not([data-category="syrup"]) { display: none; }
-
-        /* CSS-Only Search Logic (using modern :has() selector) */
-        /* Note: :has() is supported in all modern browsers (Chrome 105+, Safari 15.4+, Firefox 121+) */
-        .product-wrapper:has(#productSearch:not(:placeholder-shown)) .product-card {
-            display: none;
-        }
-        .product-wrapper:has(#productSearch[value*="FITALO" i]:not(:placeholder-shown)) .product-card[data-name*="FITALO" i],
-        .product-wrapper:has(#productSearch[value*="RESPINOM" i]:not(:placeholder-shown)) .product-card[data-name*="RESPINOM" i],
-        .product-wrapper:has(#productSearch[value*="OLANZON" i]:not(:placeholder-shown)) .product-card[data-name*="OLANZON" i],
-        .product-wrapper:has(#productSearch[value*="GABANICE" i]:not(:placeholder-shown)) .product-card[data-name*="GABANICE" i],
-        .product-wrapper:has(#productSearch[value*="OPIFIN" i]:not(:placeholder-shown)) .product-card[data-name*="OPIFIN" i],
-        .product-wrapper:has(#productSearch[value*="HYKNERV" i]:not(:placeholder-shown)) .product-card[data-name*="HYKNERV" i],
-        .product-wrapper:has(#productSearch[value*="GINKOFIN" i]:not(:placeholder-shown)) .product-card[data-name*="GINKOFIN" i],
-        .product-wrapper:has(#productSearch[value*="ESTRAONE" i]:not(:placeholder-shown)) .product-card[data-name*="ESTRAONE" i],
-        .product-wrapper:has(#productSearch[value*="VITAMEE" i]:not(:placeholder-shown)) .product-card[data-name*="VITAMEE" i],
-        .product-wrapper:has(#productSearch[value*="PANOM" i]:not(:placeholder-shown)) .product-card[data-name*="PANOM" i],
-        .product-wrapper:has(#productSearch[value*="ACEGET" i]:not(:placeholder-shown)) .product-card[data-name*="ACEGET" i],
-        .product-wrapper:has(#productSearch[value*="MONTIZIN" i]:not(:placeholder-shown)) .product-card[data-name*="MONTIZIN" i] {
-            display: flex;
-        }
 
         /* =========================================
            EXPERTISE & WHY CHOOSE US
@@ -831,6 +826,28 @@
             display: flex;
             align-items: center;
             justify-content: center;
+        }
+
+
+        .why-image-box {
+            height: 370px;
+            max-width: 500px;
+            overflow: hidden;
+            border: 1px solid rgba(18, 59, 112, 0.16);
+            background: #eaf2fb;
+            box-shadow: 0 14px 36px rgba(18, 59, 112, 0.12);
+        }
+
+        .why-image-box img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        @media (max-width: 767px) {
+            .why-image-box { height: 260px; }
         }
 
         .circle-decoration {
@@ -924,7 +941,7 @@
         .form-group textarea:focus {
             outline: none;
             border-color: var(--primary-blue);
-            box-shadow: 0 0 0 3px rgba(7, 155, 203, 0.1);
+            box-shadow: 0 0 0 3px rgba(18, 59, 112, 0.10);
         }
 
         @media (min-width: 992px) {
@@ -1072,7 +1089,7 @@
                     <li><a href="#about" class="nav-link">About Us</a></li>
                     <li><a href="#products" class="nav-link">Our Products</a></li>
                     <li><a href="#expertise" class="nav-link">Our Expertise</a></li>
-                    <li><a href="#mission" class="nav-link">Mission & Vision</a></li>
+                    <li><a href="#mission" class="nav-link">Vision, Mission & Values</a></li>
                     <li><a href="#contact" class="nav-link btn-primary nav-cta">Contact Us</a></li>
                 </ul>
             </nav>
@@ -1113,41 +1130,28 @@
             </div>
         </section>
 
-        <!-- CORE VALUES -->
-        <section class="section core-values bg-light">
+        <!-- VISION, MISSION & AIM / VALUES -->
+        <section id="mission" class="section core-values bg-light">
             <div class="container">
                 <div class="section-header text-center">
-                    <h2 class="section-title">Our Core Values</h2>
-                    <p class="section-subtitle">The principles that guide our operations and partnerships.</p>
+                    <h2 class="section-title">Our Vision, Mission & Values</h2>
+                    <p class="section-subtitle">The purpose and principles that guide Finom Healthcare.</p>
                 </div>
-                <div class="grid-4 values-grid">
+                <div class="grid-3 values-grid">
                     <div class="card value-card">
-                        <div class="icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3>Quality Commitment</h3>
-                        <p>A commitment to responsible sourcing and maintaining high standards in pharmaceutical business practices.</p>
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+                        <h3>Our Vision</h3>
+                        <p>To emerge as a trusted and progressive pharmaceutical leader across India, setting benchmarks in everyday wellness.</p>
                     </div>
                     <div class="card value-card">
-                        <div class="icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                        </div>
-                        <h3>Trust & Integrity</h3>
-                        <p>Building lasting relationships through transparency, accountability and ethical conduct.</p>
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                        <h3>Our Mission</h3>
+                        <p>At Finom Healthcare Pvt. Ltd., our mission is to deliver effective, high-quality pharmaceutical and nutraceutical solutions that improve daily patient outcomes.</p>
                     </div>
                     <div class="card value-card">
-                        <div class="icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"></path></svg>
-                        </div>
-                        <h3>Healthcare Partnerships</h3>
-                        <p>Supporting meaningful collaboration with doctors, chemists, distributors and healthcare professionals.</p>
-                    </div>
-                    <div class="card value-card">
-                        <div class="icon-box">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>
-                        </div>
-                        <h3>Continuous Growth</h3>
-                        <p>Embracing improvement, innovation and evolving healthcare requirements.</p>
+                        <div class="icon-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M3 12h18"></path><path d="m5 5 14 14M19 5 5 19"></path></svg></div>
+                        <h3>Our Aim & Values</h3>
+                        <p>To uphold uncompromising quality and safety, strategically expand our distribution reach, earn lasting trust through ethical partnerships, and grow sustainably by introducing innovative, patient-friendly formulations that respond to evolving healthcare needs.</p>
                     </div>
                 </div>
             </div>
@@ -1160,17 +1164,7 @@
                     <h2 class="section-title">Our Pharmaceutical Portfolio</h2>
                     <p class="section-subtitle">Explore our growing range of pharmaceutical formulations and healthcare products.</p>
                 </div>
-
-                <div class="product-catalogue-reference">
-                    <img
-                        src="./product-catalogue.jpg"
-                        alt="Finom Healthcare Products"
-                        loading="lazy"
-                        style="width:100%;max-width:1000px;height:auto;margin:0 auto 2rem;border-radius:12px;"
-                    >
-                </div>
-
-                <div class="product-wrapper">
+<div class="product-wrapper">
                     <div class="product-controls">
                         <div class="search-box">
                             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
@@ -1192,123 +1186,128 @@
                     </div>
 
                     <div class="grid-3 product-grid" id="productGrid">
-
-                        <div class="product-card" data-category="tablets" data-name="FITALO LS">
-                            <div class="product-card-header">
-                                <h3 class="product-title">FITALO LS</h3>
-                                <span class="product-category">Tablets</span>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="hyknerv benfotiamine, methylcobalamin, alpha lipoic acid, l-methylfolate, chromium picolinate, myo-inositol & pyridoxine tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/hyknerv.jpg" alt="HYKNERV medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">HYKNERV</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Benfotiamine, Methylcobalamin, Alpha Lipoic Acid, L-methylfolate, Chromium Picolinate, Myo-Inositol & Pyridoxine tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Escitalopram 5 mg + Clonazepam 0.25 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="FITALO PLUS">
-                            <div class="product-card-header">
-                                <h3 class="product-title">FITALO PLUS</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="syrup" data-name="vitamee syrup lycopene, multivitamins, multiminerals & antioxidants syrup. sugar-free formulation.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/vitamee-syrup.jpg" alt="VITAMEE SYRUP medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">VITAMEE SYRUP</h3><span class="product-category">Syrup</span></div>
+                                <p class="product-composition">Lycopene, multivitamins, multiminerals & antioxidants syrup. Sugar-free formulation.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Escitalopram 5/10 mg + Clonazepam 0.5 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="RESPINOM PLUS 2/3">
-                            <div class="product-card-header">
-                                <h3 class="product-title">RESPINOM PLUS 2/3</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="ginkofin omega-3 fatty acid, green tea, ginseng, garlic, ginkgo biloba, lycopene, vitamins & minerals.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/ginkofin.jpg" alt="GINKOFIN medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">GINKOFIN</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Omega-3 fatty acid, Green Tea, Ginseng, Garlic, Ginkgo Biloba, Lycopene, vitamins & minerals.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Risperidone 2/3 mg + Trihexyphenidyl 2 mg mouth-dissolving tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="OLANZON MD">
-                            <div class="product-card-header">
-                                <h3 class="product-title">OLANZON MD</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="aceget-sp aceclofenac, paracetamol & serratiopeptidase tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/aceget-sp.jpg" alt="ACEGET-SP medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">ACEGET-SP</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Aceclofenac, Paracetamol & Serratiopeptidase tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Olanzapine 2.5/5/10 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="GABANICE-NT">
-                            <div class="product-card-header">
-                                <h3 class="product-title">GABANICE-NT</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="capsules" data-name="panom-d pantoprazole sodium (gr) & domperidone (pr) capsules.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/panom-d.jpg" alt="PANOM-D medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">PANOM-D</h3><span class="product-category">Capsules</span></div>
+                                <p class="product-composition">Pantoprazole Sodium (GR) & Domperidone (PR) capsules.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Gabapentin 400 mg + Nortriptyline 10 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="OPIFIN 50/100">
-                            <div class="product-card-header">
-                                <h3 class="product-title">OPIFIN 50/100</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="opifin 100 opipramol dihydrochloride tablets 100 mg.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/opifin-100.jpg" alt="OPIFIN 100 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">OPIFIN 100</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Opipramol Dihydrochloride tablets 100 mg.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Opipramol 50/100 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="HYKNERV">
-                            <div class="product-card-header">
-                                <h3 class="product-title">HYKNERV</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="olanzon md 2.5 olanzapine 2.5 mg mouth-dissolving tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/olanzon-md-2-5.jpg" alt="OLANZON MD 2.5 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">OLANZON MD 2.5</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Olanzapine 2.5 mg mouth-dissolving tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Benfotiamine 200 mg + Methylcobalamin 1500 mcg + Alpha Lipoic Acid 200 mg + Folic Acid 1.5 mg + Chromium Picolinate 200 mcg + Myo-Inositol 100 mg + Pyridoxine Hydrochloride 3 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
+                        </article>
 
-                        <div class="product-card" data-category="capsules" data-name="GINKOFIN">
-                            <div class="product-card-header">
-                                <h3 class="product-title">GINKOFIN</h3>
-                                <span class="product-category">Capsules</span>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="olanzon md 5 olanzapine 5 mg mouth-dissolving tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/olanzon-md-5.jpg" alt="OLANZON MD 5 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">OLANZON MD 5</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Olanzapine 5 mg mouth-dissolving tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Omega-3 fatty acid 110 mg + Green Tea Extract 200 mg + Ginseng 100 mg + Garlic Extract 50 mg + Ginkgo Biloba 50 mg + Lycopene 10 mg with vitamins and minerals.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="ESTRAONE-2">
-                            <div class="product-card-header">
-                                <h3 class="product-title">ESTRAONE-2</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="fitalo plus 5 escitalopram & clonazepam tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/fitalo-plus-5.jpg" alt="FITALO PLUS 5 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">FITALO PLUS 5</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Escitalopram & Clonazepam tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Estradiol Valerate 2 mg.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="syrup" data-name="VITAMEE SYRUP">
-                            <div class="product-card-header">
-                                <h3 class="product-title">VITAMEE SYRUP</h3>
-                                <span class="product-category">Syrup</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="fitalo ls 5 escitalopram & clonazepam tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/fitalo-ls-5.jpg" alt="FITALO LS 5 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">FITALO LS 5</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Escitalopram & Clonazepam tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Lycopene 10% - 1000 mcg + Vitamin E 10 mg + Vitamin B2 2 mg + Vitamin B1 1.7 mg + Vitamin B6 1.2 mg + Biotin 50 mcg + Zinc Gluconate 3 mg + Copper Sulphate 500 mcg + Manganese Gluconate 100 mcg + Potassium Iodide 100 mcg.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="capsules" data-name="PANOM D">
-                            <div class="product-card-header">
-                                <h3 class="product-title">PANOM D</h3>
-                                <span class="product-category">Capsules</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="gabanice nt gabapentin & nortriptyline hydrochloride tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/gabanice-nt.jpg" alt="GABANICE NT medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">GABANICE NT</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Gabapentin & Nortriptyline Hydrochloride tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Pantoprazole 40 mg (EC) + Domperidone 30 mg (SR) capsules.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="ACEGET-SP">
-                            <div class="product-card-header">
-                                <h3 class="product-title">ACEGET-SP</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="montizin levocetirizine hydrochloride & montelukast sodium tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/montizin.jpg" alt="MONTIZIN medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">MONTIZIN</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Levocetirizine Hydrochloride & Montelukast Sodium tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Aceclofenac 100 mg + Paracetamol 325 mg + Serratiopeptidase 15 mg.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
-
-                        <div class="product-card" data-category="tablets" data-name="MONTIZIN">
-                            <div class="product-card-header">
-                                <h3 class="product-title">MONTIZIN</h3>
-                                <span class="product-category">Tablets</span>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="fitalo plus 10 escitalopram & clonazepam tablets.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/fitalo-plus-10.jpg" alt="FITALO PLUS 10 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">FITALO PLUS 10</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Escitalopram & Clonazepam tablets.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
                             </div>
-                            <p class="product-composition">Montelukast Sodium 10 mg + Levocetirizine 5 mg tablets.</p>
-                            <a href="#contact" class="product-action">Enquire About Product</a>
-                        </div>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="opifin 50 opipramol dihydrochloride tablets 50 mg.">
+                            <div class="product-photo-wrap"><img class="product-photo" src="./assets/medicines/opifin-50.jpg" alt="OPIFIN 50 medicine pack" loading="lazy"></div>
+                            <div class="product-card-content">
+                                <div class="product-card-header"><h3 class="product-title">OPIFIN 50</h3><span class="product-category">Tablets</span></div>
+                                <p class="product-composition">Opipramol Dihydrochloride tablets 50 mg.</p>
+                                <a href="#contact" class="product-action">Enquire About Product</a>
+                            </div>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="respinom plus 2/3 risperidone trihexyphenidyl">
+                            <div class="product-photo-wrap product-photo-placeholder"><span>Product image<br>coming soon</span></div>
+                            <div class="product-card-content"><div class="product-card-header"><h3 class="product-title">RESPINOM PLUS 2/3</h3><span class="product-category">Tablets</span></div><p class="product-composition">Risperidone 2/3 mg + Trihexyphenidyl 2 mg mouth-dissolving tablets.</p><a href="#contact" class="product-action">Enquire About Product</a></div>
+                        </article>
+                        <article class="product-card product-card-photo" data-category="tablets" data-name="estraone-2 estradiol valerate">
+                            <div class="product-photo-wrap product-photo-placeholder"><span>Product image<br>coming soon</span></div>
+                            <div class="product-card-content"><div class="product-card-header"><h3 class="product-title">ESTRAONE-2</h3><span class="product-category">Tablets</span></div><p class="product-composition">Estradiol Valerate 2 mg.</p><a href="#contact" class="product-action">Enquire About Product</a></div>
+                        </article>
+                    </div>
 
                     </div>
                 </div>
@@ -1368,29 +1367,14 @@
                         </ul>
                     </div>
                     <div class="why-visual">
-                        <div class="abstract-box">
-                            <div class="circle-decoration"></div>
+                        <div class="abstract-box why-image-box">
+                            <img src="./assets/finom-quality-lab.png" alt="Pharmaceutical quality assurance professional inspecting medicine packaging in a modern laboratory" loading="lazy">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- MISSION & VISION -->
-        <section id="mission" class="section mission-vision bg-light">
-            <div class="container grid-2">
-                <div class="card mv-card">
-                    <h3>Our Mission</h3>
-                    <p>To contribute to a stronger healthcare ecosystem through responsible pharmaceutical trading, trusted partnerships and a commitment to quality and professional excellence.</p>
-                </div>
-                <div class="card mv-card">
-                    <h3>Our Vision</h3>
-                    <p>To grow as a trusted pharmaceutical and healthcare business, recognized for integrity, meaningful partnerships and a consistent commitment to supporting healthcare needs.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
+<!-- CONTACT SECTION -->
         <section id="contact" class="section contact">
             <div class="container contact-container">
                 <div class="contact-info">
@@ -1463,7 +1447,7 @@
                     <li><a href="#about">About Us</a></li>
                     <li><a href="#products">Our Products</a></li>
                     <li><a href="#expertise">Our Expertise</a></li>
-                    <li><a href="#mission">Mission & Vision</a></li>
+                    <li><a href="#mission">Vision, Mission & Values</a></li>
                     <li><a href="#contact">Contact Us</a></li>
                 </ul>
             </div>
@@ -1484,6 +1468,83 @@
             <p>Product information is provided for general reference and is intended for healthcare professionals and authorized business stakeholders. Product compositions and regulatory information should be verified against approved product documentation. Medicines should be used only under appropriate medical guidance.</p>
         </div>
     </footer>
+
+<script>
+(function () {
+  const search = document.getElementById('productSearch');
+  const cards = Array.from(document.querySelectorAll('#productGrid .product-card'));
+  const filters = Array.from(document.querySelectorAll('input[name="productFilter"]'));
+  function applyFilters() {
+    const term = (search?.value || '').trim().toLowerCase();
+    const selected = filters.find(f => f.checked)?.id || 'filter-all';
+    const category = selected === 'filter-all' ? '' : selected.replace('filter-', '');
+    cards.forEach(card => {
+      const matchesText = !term || (card.dataset.name || '').toLowerCase().includes(term);
+      const matchesCategory = !category || card.dataset.category === category;
+      card.style.display = matchesText && matchesCategory ? 'flex' : 'none';
+    });
+  }
+  search?.addEventListener('input', applyFilters);
+  filters.forEach(filter => filter.addEventListener('change', applyFilters));
+  applyFilters();
+})();
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  const form = document.getElementById('enquiryForm');
+  if (!form || !window.supabase) return;
+
+  const SUPABASE_URL = 'https://rtcdmctwoiajkzyrdcit.supabase.co';
+  const SUPABASE_ANON_KEY = 'sb_publishable_nduSiGMeUnmvmZkeH8gqsQ_jfwh_NHF';
+  const client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  const submitButton = form.querySelector('button[type="submit"]');
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  status.style.marginTop = '1rem';
+  status.style.fontWeight = '600';
+  form.appendChild(status);
+
+  form.addEventListener('submit', async function (event) {
+    event.preventDefault();
+    if (!form.reportValidity()) return;
+
+    const values = new FormData(form);
+    const payload = {
+      name: String(values.get('name') || '').trim(),
+      company: String(values.get('company') || '').trim() || null,
+      email: String(values.get('email') || '').trim(),
+      phone: String(values.get('phone') || '').trim() || null,
+      enquiry_type: String(values.get('enquiryType') || '').trim(),
+      message: String(values.get('message') || '').trim()
+    };
+
+    submitButton.disabled = true;
+    const originalLabel = submitButton.textContent;
+    submitButton.textContent = 'Submitting...';
+    status.textContent = '';
+    status.style.color = '#123B70';
+
+    try {
+      const { error } = await client.from('website_enquiries').insert([payload]);
+      if (error) throw error;
+      status.textContent = 'Thank you. Your enquiry has been submitted successfully.';
+      status.style.color = '#16803c';
+      form.reset();
+    } catch (error) {
+      console.error('Finom enquiry submission failed:', error);
+      status.textContent = 'We could not submit your enquiry right now. Please try again or contact us directly.';
+      status.style.color = '#b42318';
+    } finally {
+      submitButton.disabled = false;
+      submitButton.textContent = originalLabel;
+    }
+  });
+})();
+</script>
 
 </body>
 </html>

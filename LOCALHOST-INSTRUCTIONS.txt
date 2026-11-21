@@ -1,0 +1,14 @@
+FINOM HEALTHCARE WEBSITE - LOCAL PREVIEW
+
+1. Extract this ZIP to a folder on your computer.
+2. Open the extracted website folder.
+3. In the folder address bar, type cmd and press Enter to open Command Prompt in that folder.
+4. Run this command (Node.js required):
+   npx -y http-server -p 8000
+5. Open your browser at http://localhost:8000
+6. To stop the server, return to Command Prompt and press Ctrl+C.
+
+If PowerShell blocks npx scripts, use Command Prompt (cmd.exe), not PowerShell.
+If Node.js is not installed, install Node.js LTS from https://nodejs.org/ and reopen Command Prompt.
+
+The product images are stored in assets/medicines. Keep that folder alongside index.html and the assets folder when copying or hosting the website.
